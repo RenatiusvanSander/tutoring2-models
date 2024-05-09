@@ -13,8 +13,6 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Address")
-//@JsonSerialize(using = AddressEntitySerializer.class)
-//@JsonDeserialize(using = AddressEntityDeserializer.class)
 public class AddressEntity {
 
 	/**

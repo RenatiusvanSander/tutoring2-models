@@ -16,8 +16,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Zipcode")
-// @JsonSerialize(using = ZipCodeEntitySerializer.class)
-//@JsonDeserialize(using = ZipCodeEntityDeserializer.class)
 public class ZipCodeEntity {
 
 	/**

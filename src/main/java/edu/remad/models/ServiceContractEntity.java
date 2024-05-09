@@ -16,8 +16,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "service_contracts")
-//@JsonSerialize(using = ServiceContractEntitySerializer.class)
-//@JsonDeserialize(using = ServiceContractEntityDeserializer.class)
 public class ServiceContractEntity {
 
 	/**
@@ -131,7 +129,7 @@ public class ServiceContractEntity {
 	}
 
 	/**
-	 * Sets service contract creation dte
+	 * Sets service contract creation date
 	 *
 	 * @param serviceContractCreationDate service contract's creation date to set
 	 */

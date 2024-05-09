@@ -16,11 +16,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-//import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-//import edu.remad.tutoring2.appconstants.RegexAppConstants;
+import edu.remad.tutoring2.appconstants.RegexAppConstants;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Builder.Default;
@@ -42,11 +42,11 @@ public class UserEntity {
 	private Long id;
 
 	@NotBlank
-//	@Pattern(regexp = RegexAppConstants.USERNAME_REGEX)
+	@Pattern(regexp = RegexAppConstants.USERNAME_REGEX)
 	private String username;
 
 	@NotBlank
-//	@Pattern(regexp = RegexAppConstants.EMAIL_REGEX)
+	@Pattern(regexp = RegexAppConstants.EMAIL_REGEX)
 	private String email;
 
 	@NotBlank
@@ -66,19 +66,19 @@ public class UserEntity {
 	private List<TokenEntity> tokens;
 	
 	@NotBlank
-	//@Pattern(regexp = RegexAppConstants.FIRST_NAME_REGEX)
+	@Pattern(regexp = RegexAppConstants.FIRST_NAME_REGEX)
 	private String firstName;
 	
 	@NotBlank
-	//@Pattern(regexp = RegexAppConstants.LAST_NAME_REGEX)
+	@Pattern(regexp = RegexAppConstants.LAST_NAME_REGEX)
 	private String lastName;
 	
 	@NotBlank
-//	@Pattern(regexp = RegexAppConstants.GENDER_REGEX)
+	@Pattern(regexp = RegexAppConstants.GENDER_REGEX)
 	private String gender;
 	
 	@NotBlank
-	//@Pattern(regexp = RegexAppConstants.CELL_PHONE_REGEX)
+	@Pattern(regexp = RegexAppConstants.CELL_PHONE_REGEX)
 	private String cellPhone;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

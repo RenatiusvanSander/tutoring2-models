@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "token")
-//@JsonDeserialize(using = TokenEntityDeserializer.class)
 public class TokenEntity {
 
 	@Id

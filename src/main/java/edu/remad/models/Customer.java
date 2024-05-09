@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
- * all functions concerning a customer like storing data ofr name, address, birthdate, e-mail, phone
+ * all functions concerning a customer like storing data for name, address, birthdate, e-mail, phone
  * number and creation date of data set
  */
 //@Entity

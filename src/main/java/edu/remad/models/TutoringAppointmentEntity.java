@@ -17,8 +17,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tutoring_appointments")
-//@JsonSerialize(using = TutoringAppointmentEntitySerializer.class)
-//@JsonDeserialize(using = TutoringAppointmentEntityDeserializer.class)
 public class TutoringAppointmentEntity {
 
 	/**
