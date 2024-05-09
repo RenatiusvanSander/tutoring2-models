@@ -1,4 +1,4 @@
-package edu.remad.models;
+package edu.remad.tutoring2.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

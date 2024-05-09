@@ -1,4 +1,4 @@
-package edu.remad.models;
+package edu.remad.tutoring2.models;
 
 public enum TokenType {
 	BEARER(0);

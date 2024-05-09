@@ -1,4 +1,4 @@
-package edu.remad.models;
+package edu.remad.tutoring2.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
