@@ -11,10 +11,12 @@
 	<properties>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven.compiler.source>11</maven.compiler.source>
+		<maven.jar.version>3.4.1</maven.jar.version>
 		<maven.compiler.version>3.13.0</maven.compiler.version>
 		<encoding>UTF-8</encoding>
 		<junit5.version>5.10.0</junit5.version>
 		<lombok.version>1.18.30</lombok.version>
+		<library.author>ReMad</library.author>
 	</properties>
 	<!-- ################# -->
 	<!-- end of properties -->
@@ -160,7 +162,7 @@
 	<!-- start of build section -->
 	<!-- ###################### -->
 	<build>
-		<finalName>tutoring2</finalName>
+		<finalName>tutoring2-models</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -176,6 +178,24 @@
 							<version>${lombok.version}</version>
 						</path>
 					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven.jar.version}</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+						</manifest>
+						<manifestEntries>
+							<mode>production</mode>
+							<Built-By>${library.author}</Built-By>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
