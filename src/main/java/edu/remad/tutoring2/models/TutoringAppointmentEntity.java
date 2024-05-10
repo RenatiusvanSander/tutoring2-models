@@ -51,6 +51,10 @@ public class TutoringAppointmentEntity {
 	 */
 	@Column(name = "tutoring_appointment_end_date_time", columnDefinition = "TIMESTAMP")
 	private LocalDateTime tutoringAppointmentEndDateTime;
+	
+	@OneToOne
+	@JoinColumn(name = "tutoring_appointment_service_contract", referencedColumnName = "service_contract_no")
+	private ServiceContractEntity serviceContractEntity;
 
 	/**
 	 * tutoring appointment's creation date
@@ -73,16 +77,18 @@ public class TutoringAppointmentEntity {
 	 * @param tutoringAppointmentStartDateTime tutoring appointment's start date
 	 *                                         time
 	 * @param tutoringAppointmentEndDateTime   tutoring appointment's end date time
+	 * @param serviceContractEntity service contract for example electrical engineering
 	 * @param tutoringAppointmentCreationDate  tutoring appointment's creation date
 	 */
 	public TutoringAppointmentEntity(long tutoringAppointmentNo, UserEntity tutoringAppointmentUser,
 			LocalDateTime tutoringAppointmentDate, LocalDateTime tutoringAppointmentStartDateTime,
-			LocalDateTime tutoringAppointmentEndDateTime, LocalDateTime tutoringAppointmentCreationDate) {
+			LocalDateTime tutoringAppointmentEndDateTime, ServiceContractEntity serviceContractEntity, LocalDateTime tutoringAppointmentCreationDate) {
 		this.tutoringAppointmentNo = tutoringAppointmentNo;
 		this.tutoringAppointmentUser = tutoringAppointmentUser;
 		this.tutoringAppointmentDate = tutoringAppointmentDate;
 		this.tutoringAppointmentStartDateTime = tutoringAppointmentStartDateTime;
 		this.tutoringAppointmentEndDateTime = tutoringAppointmentEndDateTime;
+		this.serviceContractEntity = serviceContractEntity;
 		this.tutoringAppointmentCreationDate = tutoringAppointmentCreationDate;
 	}
 
@@ -176,6 +182,14 @@ public class TutoringAppointmentEntity {
 		this.tutoringAppointmentEndDateTime = tutoringAppointmentEndDateTime;
 	}
 
+	public ServiceContractEntity getServiceContractEntity() {
+		return serviceContractEntity;
+	}
+
+	public void setServiceContractEntity(ServiceContractEntity serviceContractEntity) {
+		this.serviceContractEntity = serviceContractEntity;
+	}
+
 	/**
 	 * Gets creation date
 	 *
@@ -197,8 +211,9 @@ public class TutoringAppointmentEntity {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(tutoringAppointmentCreationDate, tutoringAppointmentDate, tutoringAppointmentEndDateTime,
-				tutoringAppointmentNo, tutoringAppointmentStartDateTime, tutoringAppointmentUser);
+		return Objects.hash(serviceContractEntity, tutoringAppointmentCreationDate, tutoringAppointmentDate,
+				tutoringAppointmentEndDateTime, tutoringAppointmentNo, tutoringAppointmentStartDateTime,
+				tutoringAppointmentUser);
 	}
 
 	@Override
@@ -210,7 +225,9 @@ public class TutoringAppointmentEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		TutoringAppointmentEntity other = (TutoringAppointmentEntity) obj;
-		return Objects.equals(tutoringAppointmentCreationDate, other.tutoringAppointmentCreationDate)
+		
+		return Objects.equals(serviceContractEntity, other.serviceContractEntity)
+				&& Objects.equals(tutoringAppointmentCreationDate, other.tutoringAppointmentCreationDate)
 				&& Objects.equals(tutoringAppointmentDate, other.tutoringAppointmentDate)
 				&& Objects.equals(tutoringAppointmentEndDateTime, other.tutoringAppointmentEndDateTime)
 				&& tutoringAppointmentNo == other.tutoringAppointmentNo
@@ -223,7 +240,7 @@ public class TutoringAppointmentEntity {
 		return "TutoringAppointmentEntity [tutoringAppointmentNo=" + tutoringAppointmentNo
 				+ ", tutoringAppointmentUser=" + tutoringAppointmentUser + ", tutoringAppointmentDate="
 				+ tutoringAppointmentDate + ", tutoringAppointmentStartDateTime=" + tutoringAppointmentStartDateTime
-				+ ", tutoringAppointmentEndDateTime=" + tutoringAppointmentEndDateTime
-				+ ", tutoringAppointmentCreationDate=" + tutoringAppointmentCreationDate + "]";
+				+ ", tutoringAppointmentEndDateTime=" + tutoringAppointmentEndDateTime + ", serviceContractEntity="
+				+ serviceContractEntity + ", tutoringAppointmentCreationDate=" + tutoringAppointmentCreationDate + "]";
 	}
 }
