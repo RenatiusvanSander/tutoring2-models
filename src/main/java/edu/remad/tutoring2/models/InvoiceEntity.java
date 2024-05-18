@@ -1,8 +1,10 @@
 package edu.remad.tutoring2.models;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name = "invoice_entities")
+@Entity
+@Table(name = "invoices_entity")
 public class InvoiceEntity {
 	
 	/**
@@ -49,8 +52,8 @@ public class InvoiceEntity {
 	   * customer's no of invoice
 	   */
 	  @OneToOne
-	  @JoinColumn(name = "invoice_customer", referencedColumnName = "customer_no")
-	  private Customer invoiceCustomer;
+	  @JoinColumn(name = "invoice_user", referencedColumnName = "userentity_id")
+	  private UserEntity invoiceUser;
 
 	  /**
 	   * creation date of invoice
@@ -71,20 +74,20 @@ public class InvoiceEntity {
 	   * @param invoiceTutoringHours   given invoice's tutoring hours
 	   * @param invoiceDate            given invoice's date
 	   * @param invoiceTutoringDate    given invoice's tutoring date
-	   * @param invoiceCustomer        given invoice's customer no
+	   * @param invoiceUser        given invoice's user entity id
 	   * @param invoiceCreationDate    given invoice's creation date of this data set
 	   */
 	  public InvoiceEntity(ServiceContractEntity invoiceServiceContract,
 	      float invoiceTutoringHours,
 	      LocalDateTime invoiceDate,
 	      LocalDateTime invoiceTutoringDate,
-	      Customer invoiceCustomer,
+	      UserEntity invoiceUser,
 	      LocalDateTime invoiceCreationDate) {
 	    this.invoiceServiceContract = invoiceServiceContract;
 	    this.invoiceTutoringHours = invoiceTutoringHours;
 	    this.invoiceDate = invoiceDate;
 	    this.invoiceTutoringDate = invoiceTutoringDate;
-	    this.invoiceCustomer = invoiceCustomer;
+	    this.invoiceUser = invoiceUser;
 	    this.invoiceCreationDate = invoiceCreationDate;
 	  }
 
@@ -179,12 +182,12 @@ public class InvoiceEntity {
 	  }
 
 	  /**
-	   * Gets customer number.
+	   * Gets user's id.
 	   *
 	   * @return invoice's customer
 	   */
-	  public Customer getInvoiceCustomer() {
-	    return invoiceCustomer;
+	  public UserEntity getInvoiceUser() {
+	    return invoiceUser;
 	  }
 
 	  /**
@@ -192,8 +195,8 @@ public class InvoiceEntity {
 	   *
 	   * @param invoiceCustomer invoice's customer to set
 	   */
-	  public void setInvoiceCustomer(Customer invoiceCustomer) {
-	    this.invoiceCustomer = invoiceCustomer;
+	  public void setInvoiceUser(UserEntity invoiceUser) {
+	    this.invoiceUser = invoiceUser;
 	  }
 
 	  /**
@@ -213,4 +216,35 @@ public class InvoiceEntity {
 	  public void setInvoiceCreationDate(LocalDateTime invoiceCreationDate) {
 	    this.invoiceCreationDate = invoiceCreationDate;
 	  }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(invoiceCreationDate, invoiceDate, invoiceNo, invoiceServiceContract, invoiceTutoringDate,
+				invoiceTutoringHours, invoiceUser);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		InvoiceEntity other = (InvoiceEntity) obj;
+		return Objects.equals(invoiceCreationDate, other.invoiceCreationDate)
+				&& Objects.equals(invoiceDate, other.invoiceDate) && invoiceNo == other.invoiceNo
+				&& Objects.equals(invoiceServiceContract, other.invoiceServiceContract)
+				&& Objects.equals(invoiceTutoringDate, other.invoiceTutoringDate)
+				&& Float.floatToIntBits(invoiceTutoringHours) == Float.floatToIntBits(other.invoiceTutoringHours)
+				&& Objects.equals(invoiceUser, other.invoiceUser);
+	}
+
+	@Override
+	public String toString() {
+		return "InvoiceEntity [invoiceNo=" + invoiceNo + ", invoiceServiceContract=" + invoiceServiceContract
+				+ ", invoiceTutoringHours=" + invoiceTutoringHours + ", invoiceDate=" + invoiceDate
+				+ ", invoiceTutoringDate=" + invoiceTutoringDate + ", invoiceUser=" + invoiceUser
+				+ ", invoiceCreationDate=" + invoiceCreationDate + "]";
+	}
 }
