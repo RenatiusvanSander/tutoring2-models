@@ -55,6 +55,11 @@ public class TutoringAppointmentEntity {
 	@OneToOne
 	@JoinColumn(name = "tutoring_appointment_service_contract", referencedColumnName = "service_contract_no")
 	private ServiceContractEntity serviceContractEntity;
+	
+	/**
+	 * when done it is {@code true}
+	 */
+	private boolean isAccomplished;
 
 	/**
 	 * tutoring appointment's creation date
@@ -78,17 +83,19 @@ public class TutoringAppointmentEntity {
 	 *                                         time
 	 * @param tutoringAppointmentEndDateTime   tutoring appointment's end date time
 	 * @param serviceContractEntity service contract for example electrical engineering
+	 * @param isAccomplished tutoring appointment took place, when {@code true}
 	 * @param tutoringAppointmentCreationDate  tutoring appointment's creation date
 	 */
 	public TutoringAppointmentEntity(long tutoringAppointmentNo, UserEntity tutoringAppointmentUser,
 			LocalDateTime tutoringAppointmentDate, LocalDateTime tutoringAppointmentStartDateTime,
-			LocalDateTime tutoringAppointmentEndDateTime, ServiceContractEntity serviceContractEntity, LocalDateTime tutoringAppointmentCreationDate) {
+			LocalDateTime tutoringAppointmentEndDateTime, ServiceContractEntity serviceContractEntity, boolean isAccomplished, LocalDateTime tutoringAppointmentCreationDate) {
 		this.tutoringAppointmentNo = tutoringAppointmentNo;
 		this.tutoringAppointmentUser = tutoringAppointmentUser;
 		this.tutoringAppointmentDate = tutoringAppointmentDate;
 		this.tutoringAppointmentStartDateTime = tutoringAppointmentStartDateTime;
 		this.tutoringAppointmentEndDateTime = tutoringAppointmentEndDateTime;
 		this.serviceContractEntity = serviceContractEntity;
+		this.isAccomplished = isAccomplished;
 		this.tutoringAppointmentCreationDate = tutoringAppointmentCreationDate;
 	}
 
@@ -190,6 +197,14 @@ public class TutoringAppointmentEntity {
 		this.serviceContractEntity = serviceContractEntity;
 	}
 
+	public boolean isAccomplished() {
+		return isAccomplished;
+	}
+
+	public void setAccomplished(boolean isAccomplished) {
+		this.isAccomplished = isAccomplished;
+	}
+
 	/**
 	 * Gets creation date
 	 *
@@ -211,9 +226,9 @@ public class TutoringAppointmentEntity {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(serviceContractEntity, tutoringAppointmentCreationDate, tutoringAppointmentDate,
-				tutoringAppointmentEndDateTime, tutoringAppointmentNo, tutoringAppointmentStartDateTime,
-				tutoringAppointmentUser);
+		return Objects.hash(isAccomplished, serviceContractEntity, tutoringAppointmentCreationDate,
+				tutoringAppointmentDate, tutoringAppointmentEndDateTime, tutoringAppointmentNo,
+				tutoringAppointmentStartDateTime, tutoringAppointmentUser);
 	}
 
 	@Override
@@ -225,8 +240,8 @@ public class TutoringAppointmentEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		TutoringAppointmentEntity other = (TutoringAppointmentEntity) obj;
-		
-		return Objects.equals(serviceContractEntity, other.serviceContractEntity)
+		return isAccomplished == other.isAccomplished
+				&& Objects.equals(serviceContractEntity, other.serviceContractEntity)
 				&& Objects.equals(tutoringAppointmentCreationDate, other.tutoringAppointmentCreationDate)
 				&& Objects.equals(tutoringAppointmentDate, other.tutoringAppointmentDate)
 				&& Objects.equals(tutoringAppointmentEndDateTime, other.tutoringAppointmentEndDateTime)
@@ -241,6 +256,7 @@ public class TutoringAppointmentEntity {
 				+ ", tutoringAppointmentUser=" + tutoringAppointmentUser + ", tutoringAppointmentDate="
 				+ tutoringAppointmentDate + ", tutoringAppointmentStartDateTime=" + tutoringAppointmentStartDateTime
 				+ ", tutoringAppointmentEndDateTime=" + tutoringAppointmentEndDateTime + ", serviceContractEntity="
-				+ serviceContractEntity + ", tutoringAppointmentCreationDate=" + tutoringAppointmentCreationDate + "]";
+				+ serviceContractEntity + ", isAccomplished=" + isAccomplished + ", tutoringAppointmentCreationDate="
+				+ tutoringAppointmentCreationDate + "]";
 	}
 }
