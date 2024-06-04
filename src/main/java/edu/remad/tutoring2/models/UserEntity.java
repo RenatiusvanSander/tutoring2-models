@@ -82,7 +82,7 @@ public class UserEntity {
 	private String cellPhone;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "userentity_id")
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private List<AddressEntity> addresses;
 	
 	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")

@@ -3,6 +3,7 @@ package edu.remad.tutoring2.models;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class AddressEntity {
 	 * the primary key for an address
 	 */
 	@Id
+	@Column(name="address_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 

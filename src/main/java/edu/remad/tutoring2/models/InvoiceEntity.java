@@ -52,7 +52,7 @@ public class InvoiceEntity {
 	 * customer's no of invoice
 	 */
 	@OneToOne
-	@JoinColumn(name = "invoice_user", referencedColumnName = "userentity_id")
+	@JoinColumn(name = "invoice_user", referencedColumnName = "id")
 	private UserEntity invoiceUser;
 
 	@OneToOne

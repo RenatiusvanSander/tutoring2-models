@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@Entity
 @Table(name = "price_entity")
 public class PriceEntity {
 
@@ -20,7 +22,7 @@ public class PriceEntity {
 	private long id;
 
 	@OneToOne
-	@JoinColumn(name = "user", referencedColumnName = "userentity_id")
+	@JoinColumn(name = "user", referencedColumnName = "id")
 	private UserEntity user;
 
 	private BigDecimal price;
