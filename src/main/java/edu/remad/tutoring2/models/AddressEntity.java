@@ -5,10 +5,12 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,6 +35,10 @@ public class AddressEntity {
 	 * house number
 	 */
 	private String addressHouseNo;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user")
+	private UserEntity user;
 
 	/**
 	 * customer's zip code
@@ -66,6 +72,23 @@ public class AddressEntity {
 		this.id = id;
 		this.addressStreet = addressStreet;
 		this.addressHouseNo = addressHouseNo;
+		this.addressZipCode = addressZipCode;
+	}
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param id             address's id
+	 * @param addressStreet  address's street
+	 * @param addressHouseNo address's house number
+	 * @param user user's entity
+	 * @param addressZipCode address's zipcode
+	 */
+	public AddressEntity(Long id, String addressStreet, String addressHouseNo, UserEntity user, ZipCodeEntity addressZipCode) {
+		this.id = id;
+		this.addressStreet = addressStreet;
+		this.addressHouseNo = addressHouseNo;
+		this.user = user;
 		this.addressZipCode = addressZipCode;
 	}
 
@@ -118,6 +141,14 @@ public class AddressEntity {
 	 */
 	public void setAddressHouseNo(String addressHouseNo) {
 		this.addressHouseNo = addressHouseNo;
+	}
+
+	public UserEntity getUserentity_id() {
+		return user;
+	}
+
+	public void setUserentity_id(UserEntity user) {
+		this.user = user;
 	}
 
 	public ZipCodeEntity getAddressZipCode() {

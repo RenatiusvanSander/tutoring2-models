@@ -81,8 +81,7 @@ public class UserEntity {
 	@Pattern(regexp = RegexAppConstants.CELL_PHONE_REGEX)
 	private String cellPhone;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<AddressEntity> addresses;
 	
 	@Column(name = "creation_date", columnDefinition = "TIMESTAMP")
