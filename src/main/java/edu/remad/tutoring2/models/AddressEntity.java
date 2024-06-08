@@ -161,7 +161,7 @@ public class AddressEntity {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(addressHouseNo, addressStreet, addressZipCode, id);
+		return Objects.hash(addressHouseNo, addressStreet, addressZipCode, id, user);
 	}
 
 	@Override
@@ -175,12 +175,13 @@ public class AddressEntity {
 		AddressEntity other = (AddressEntity) obj;
 		return Objects.equals(addressHouseNo, other.addressHouseNo)
 				&& Objects.equals(addressStreet, other.addressStreet)
-				&& Objects.equals(addressZipCode, other.addressZipCode) && id == other.id;
+				&& Objects.equals(addressZipCode, other.addressZipCode) && id == other.id
+				&& Objects.equals(user, other.user);
 	}
 
 	@Override
 	public String toString() {
 		return "AddressEntity [id=" + id + ", addressStreet=" + addressStreet + ", addressHouseNo=" + addressHouseNo
-				+ ", addressZipCode=" + addressZipCode + "]";
+				+ ", user=" + user + ", addressZipCode=" + addressZipCode + "]";
 	}
 }
