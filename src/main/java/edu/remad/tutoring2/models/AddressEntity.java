@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * Stores complete address of an {@link UserEntity}
+ */
 @Entity
 @Table(name = "Address")
 public class AddressEntity {
@@ -143,11 +146,11 @@ public class AddressEntity {
 		this.addressHouseNo = addressHouseNo;
 	}
 
-	public UserEntity getUserentity_id() {
+	public UserEntity getUser() {
 		return user;
 	}
 
-	public void setUserentity_id(UserEntity user) {
+	public void setUser(UserEntity user) {
 		this.user = user;
 	}
 
