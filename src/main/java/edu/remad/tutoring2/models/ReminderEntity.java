@@ -101,6 +101,15 @@ public class ReminderEntity {
 	public long getReminderNo() {
 		return reminderNo;
 	}
+	
+	/**
+	 * Sets Reminder's number
+	 * 
+	 * @param number reminder's number
+	 */
+	public void setReminderNo(long number) {
+		this.reminderNo = number;		
+	}
 
 	/**
 	 * Gets tutoring appointment

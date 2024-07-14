@@ -91,6 +91,7 @@ public class InvoiceEntity {
 		this.invoiceTutoringDate = invoiceTutoringDate;
 		this.invoiceUser = invoiceUser;
 		this.price = price;
+		
 		this.invoiceCreationDate = invoiceCreationDate;
 	}
 
