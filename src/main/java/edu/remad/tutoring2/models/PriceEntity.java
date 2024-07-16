@@ -64,6 +64,15 @@ public class PriceEntity {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
+	
+
+	public ServiceContractEntity getServiceContract() {
+		return serviceContract;
+	}
+
+	public void setServiceContract(ServiceContractEntity serviceContract) {
+		this.serviceContract = serviceContract;
+	}
 
 	@Override
 	public int hashCode() {
