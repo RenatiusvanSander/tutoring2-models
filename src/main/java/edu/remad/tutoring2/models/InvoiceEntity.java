@@ -74,6 +74,7 @@ public class InvoiceEntity {
 	/**
 	 * Constructor
 	 *
+	 * @param invoiceNo              given invoice's identifier
 	 * @param invoiceServiceContract given invoice's service contract
 	 * @param invoiceTutoringHours   given invoice's tutoring hours
 	 * @param invoiceDate            given invoice's date
@@ -82,16 +83,16 @@ public class InvoiceEntity {
 	 * @param price                  price
 	 * @param invoiceCreationDate    given invoice's creation date of this data set
 	 */
-	public InvoiceEntity(ServiceContractEntity invoiceServiceContract, float invoiceTutoringHours,
+	public InvoiceEntity(long invoiceNo, ServiceContractEntity invoiceServiceContract, float invoiceTutoringHours,
 			LocalDateTime invoiceDate, LocalDateTime invoiceTutoringDate, UserEntity invoiceUser, PriceEntity price,
 			LocalDateTime invoiceCreationDate) {
+		this.invoiceNo = invoiceNo;
 		this.invoiceServiceContract = invoiceServiceContract;
 		this.invoiceTutoringHours = invoiceTutoringHours;
 		this.invoiceDate = invoiceDate;
 		this.invoiceTutoringDate = invoiceTutoringDate;
 		this.invoiceUser = invoiceUser;
 		this.price = price;
-		
 		this.invoiceCreationDate = invoiceCreationDate;
 	}
 

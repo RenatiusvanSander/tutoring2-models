@@ -26,7 +26,7 @@ public class PriceEntity {
 	private UserEntity user;
 
 	private BigDecimal price;
-	
+
 	@OneToOne
 	@JoinColumn(name = "serviceContract", referencedColumnName = "service_contract_no")
 	private ServiceContractEntity serviceContract;
@@ -64,7 +64,6 @@ public class PriceEntity {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	
 
 	public ServiceContractEntity getServiceContract() {
 		return serviceContract;
@@ -89,7 +88,7 @@ public class PriceEntity {
 			return false;
 		PriceEntity other = (PriceEntity) obj;
 		return id == other.id && Objects.equals(price, other.price)
-				&& Objects.equals(serviceContract, other.serviceContract) && Objects.equals(user, other.user);
+				&& Objects.equals(serviceContract, other.serviceContract) && user.getId() == other.user.getId();
 	}
 
 	@Override
