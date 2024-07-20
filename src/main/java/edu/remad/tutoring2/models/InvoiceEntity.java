@@ -1,6 +1,7 @@
 package edu.remad.tutoring2.models;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -59,6 +61,10 @@ public class InvoiceEntity {
 	@JoinColumn(name = "invoice_price", referencedColumnName = "price_id")
 	private PriceEntity price;
 
+	@Lob
+	@Column(name = "invoiceFile", columnDefinition = "BLOB")
+	private byte[] invoiceFile;
+
 	/**
 	 * creation date of invoice
 	 */
@@ -93,6 +99,34 @@ public class InvoiceEntity {
 		this.invoiceTutoringDate = invoiceTutoringDate;
 		this.invoiceUser = invoiceUser;
 		this.price = price;
+		this.invoiceFile = "".getBytes();
+		this.invoiceCreationDate = invoiceCreationDate;
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param invoiceNo              given invoice's identifier
+	 * @param invoiceServiceContract given invoice's service contract
+	 * @param invoiceTutoringHours   given invoice's tutoring hours
+	 * @param invoiceDate            given invoice's date
+	 * @param invoiceTutoringDate    given invoice's tutoring date
+	 * @param invoiceUser            given invoice's user entity id
+	 * @param price                  price
+	 * @param invoiceFile            given invoice's PDF file
+	 * @param invoiceCreationDate    given invoice's creation date of this data set
+	 */
+	public InvoiceEntity(long invoiceNo, ServiceContractEntity invoiceServiceContract, float invoiceTutoringHours,
+			LocalDateTime invoiceDate, LocalDateTime invoiceTutoringDate, UserEntity invoiceUser, PriceEntity price,
+			byte[] invoiceFile, LocalDateTime invoiceCreationDate) {
+		this.invoiceNo = invoiceNo;
+		this.invoiceServiceContract = invoiceServiceContract;
+		this.invoiceTutoringHours = invoiceTutoringHours;
+		this.invoiceDate = invoiceDate;
+		this.invoiceTutoringDate = invoiceTutoringDate;
+		this.invoiceUser = invoiceUser;
+		this.price = price;
+		this.invoiceFile = invoiceFile;
 		this.invoiceCreationDate = invoiceCreationDate;
 	}
 
@@ -230,10 +264,23 @@ public class InvoiceEntity {
 		this.price = price;
 	}
 
+	public byte[] getInvoiceFile() {
+		return invoiceFile;
+	}
+
+	public void setInvoiceFile(byte[] invoiceFile) {
+		this.invoiceFile = invoiceFile;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(invoiceCreationDate, invoiceDate, invoiceNo, invoiceServiceContract, invoiceTutoringDate,
-				invoiceTutoringHours, invoiceUser, price);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(invoiceFile);
+		result = prime * result + Objects.hash(invoiceCreationDate, invoiceDate, invoiceNo, invoiceServiceContract,
+				invoiceTutoringDate, invoiceTutoringHours, invoiceUser, price);
+
+		return result;
 	}
 
 	@Override
@@ -246,11 +293,12 @@ public class InvoiceEntity {
 			return false;
 		InvoiceEntity other = (InvoiceEntity) obj;
 		return Objects.equals(invoiceCreationDate, other.invoiceCreationDate)
-				&& Objects.equals(invoiceDate, other.invoiceDate) && invoiceNo == other.invoiceNo
-				&& Objects.equals(invoiceServiceContract, other.invoiceServiceContract)
+				&& Objects.equals(invoiceDate, other.invoiceDate) && Arrays.equals(invoiceFile, other.invoiceFile)
+				&& invoiceNo == other.invoiceNo && Objects.equals(invoiceServiceContract, other.invoiceServiceContract)
 				&& Objects.equals(invoiceTutoringDate, other.invoiceTutoringDate)
 				&& Float.floatToIntBits(invoiceTutoringHours) == Float.floatToIntBits(other.invoiceTutoringHours)
-				&& Objects.equals(invoiceUser, other.invoiceUser) && Objects.equals(price, other.price);
+				&& Objects.equals(invoiceUser, other.invoiceUser) && Objects.equals(price, other.price)
+				&& Arrays.equals(invoiceFile, other.invoiceFile);
 	}
 
 	@Override
@@ -258,6 +306,7 @@ public class InvoiceEntity {
 		return "InvoiceEntity [invoiceNo=" + invoiceNo + ", invoiceServiceContract=" + invoiceServiceContract
 				+ ", invoiceTutoringHours=" + invoiceTutoringHours + ", invoiceDate=" + invoiceDate
 				+ ", invoiceTutoringDate=" + invoiceTutoringDate + ", invoiceUser=" + invoiceUser + ", price=" + price
-				+ ", invoiceCreationDate=" + invoiceCreationDate + "]";
+				+ ", invoiceFile=" + Arrays.toString(invoiceFile) + ", invoiceCreationDate=" + invoiceCreationDate
+				+ "]";
 	}
 }
