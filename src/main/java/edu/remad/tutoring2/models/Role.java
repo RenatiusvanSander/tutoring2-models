@@ -26,7 +26,7 @@ public class Role {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	@Pattern(regexp = RegexAppConstants.USERNAME_REGEX)
 	private String name;
